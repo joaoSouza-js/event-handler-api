@@ -1,0 +1,31 @@
+POST http://localhost:3333/events
+content-type: application/json
+
+{
+    "title": "don toliver show",
+    "details": "we don't need details shit"
+
+}
+
+###
+POST http://localhost:3333/events/8157b08f-bab0-4115-b2d9-a0f6617e8837/attendee
+content-type: application/json
+
+{
+    "name": "joão",
+    "email": "jao@gmail.com"
+}
+
+###
+GET  http://localhost:3333/events/8157b08f-bab0-4115-b2d9-a0f6617e8837
+
+###
+GET  http://localhost:3333/events/don-toliver-show/attendees?limit=8&pageIndex=0
+
+
+
+###
+GET  http://localhost:3333/events/attendee/13/badge
+
+###
+GET http://localhost:3333/attendees/12/check-in
