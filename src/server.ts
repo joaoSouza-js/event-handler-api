@@ -15,6 +15,7 @@ import { attendeesCheckIn } from "./routes/attendeesCheckIn";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUI from "@fastify/swagger-ui";
 import { errorHandler } from "./utils/erros-handler";
+import { deleteAttendee } from "./routes/deleteAttendee";
 
 const PORT = 3333;
 
@@ -51,6 +52,7 @@ app.register(getEventAttendees);
 app.register(getEvent);
 app.register(getAttendeeBadge);
 app.register(attendeesCheckIn)
+app.register(deleteAttendee)
  app.register(cors, { 
     origin: "*"
   })

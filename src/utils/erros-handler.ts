@@ -5,8 +5,9 @@ import { ZodError } from "zod"
 type FastifyErrorHandler = FastifyInstance['errorHandler']
 
 export const errorHandler :FastifyErrorHandler  = (error,request,reply) => {
-    const {validation, validationContext} = error
+    
     const isValidationError = error instanceof ZodError
+
     if(isValidationError){
         return reply.status(400).send({
             message: `Error durring validation`,
@@ -15,6 +16,7 @@ export const errorHandler :FastifyErrorHandler  = (error,request,reply) => {
     }
 
     const isBadRequestError = error instanceof BadRequest
+    
     if(isBadRequestError){
         reply.status(400).send({
             message: error.message

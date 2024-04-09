@@ -29,3 +29,6 @@ GET  http://localhost:3333/events/attendee/13/badge
 
 ###
 GET http://localhost:3333/attendees/12/check-in
+
+###
+DELETE http://localhost:3333/attendees/1404
