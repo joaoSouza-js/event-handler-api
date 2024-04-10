@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -37,8 +34,8 @@ model Attendee {
 model CheckIn {
   id         Int      @id @default(autoincrement())
   createdAt  DateTime @default(now()) @map("created_at")
-  attendee   Attendee @relation(fields: [attendeeId], references: [id], onDelete: Cascade)
   attendeeId Int      @unique @map("attendee_id")
+  attendee   Attendee @relation(fields: [attendeeId], references: [id], onDelete: Cascade)
 
   @@map("check_ins")
 }
