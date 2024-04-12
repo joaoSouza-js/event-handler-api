@@ -36,3 +36,7 @@ DELETE http://localhost:3333/attendees/1404
 ### authentication 
 
 POST  http://localhost:3333/auth/google/redirect-url
+
+###
+POST  http://localhost:3333/auth/sign-up
+

@@ -33,7 +33,7 @@ export async function authGoogleUrl(app: FastifyInstance) {
 
         const authorizedUrl = oAuthToClient.generateAuthUrl({
             access_type: 'offline',
-            scope: ["https://www.googleapis.com/auth/userinfo.profile", "openid"],
+            scope: ["https://www.googleapis.com/auth/userinfo.profile", "openid","email"],
             prompt: "consent"
         })
 

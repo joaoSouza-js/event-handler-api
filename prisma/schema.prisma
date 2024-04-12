@@ -7,6 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id             String     @id @default(uuid())
+  name           String
+  hasGoogleLogin Boolean    @default(false) @map("has_google_login")
+  email          String     @unique
+  photo          String?
+  event          Event[]
+  password       String?
+  attendee       Attendee[]
+}
+
 model Event {
   id              String     @id @default(uuid())
   title           String
@@ -14,6 +25,8 @@ model Event {
   slug            String     @unique
   maximumAttendee Int?       @map("maximum_attendee")
   Attendee        Attendee[]
+  Owner           User?      @relation(fields: [ownerId], references: [id])
+  ownerId         String?
 
   @@map("events")
 }
@@ -26,6 +39,8 @@ model Attendee {
   eventId   String   @map("event_id")
   event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
   checkIn   CheckIn?
+  User      User[]
+  userId    String?
 
   @@unique([eventId, email])
   @@map("attendees")

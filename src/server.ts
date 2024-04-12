@@ -20,6 +20,8 @@ import { authGoogle } from "./routes/auth/google";
 import { authGoogleUrl } from "./routes/auth/googleCreateAuthURL";
 import cookie, { FastifyCookieOptions } from '@fastify/cookie'
 import { evn } from "./env";
+import { signUp } from "./routes/auth/signUp";
+import { signIn } from "./routes/auth/signIn";
 
 const PORT = evn.PORT
 
@@ -49,6 +51,7 @@ app.register(fastifySwagger,{
 app.register(fastifySwaggerUI,{
     prefix: '/docs'
 })
+
 app.register(cookie, {
     secret: "my-secret", // for cookies signature
     
@@ -59,6 +62,8 @@ app.register(cookie, {
   } as FastifyCookieOptions)
 
 app.register(createEvent);
+app.register(signUp)
+app.register(signIn)
 app.register(registerForEvent);
 app.register(getEventAttendees);
 app.register(getEvent);
