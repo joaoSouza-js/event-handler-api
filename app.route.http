@@ -20,7 +20,7 @@ content-type: application/json
 GET  http://localhost:3333/events/8157b08f-bab0-4115-b2d9-a0f6617e8837
 
 ###
-GET  http://localhost:3333/events/don-toliver-show/attendees?limit=8&pageIndex=0
+GET  http://localhost:3333/events/show-em-east-abdielfort-eVKJ2p/attendees?limit=8&pageIndex=0
 
 
 
@@ -32,3 +32,7 @@ GET http://localhost:3333/attendees/12/check-in
 
 ###
 DELETE http://localhost:3333/attendees/1404
+
+### authentication 
+
+POST  http://localhost:3333/auth/google/redirect-url

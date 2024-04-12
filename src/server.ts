@@ -16,8 +16,12 @@ import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUI from "@fastify/swagger-ui";
 import { errorHandler } from "./utils/erros-handler";
 import { deleteAttendee } from "./routes/deleteAttendee";
+import { authGoogle } from "./routes/auth/google";
+import { authGoogleUrl } from "./routes/auth/googleCreateAuthURL";
+import cookie, { FastifyCookieOptions } from '@fastify/cookie'
+import { evn } from "./env";
 
-const PORT = 3333;
+const PORT = evn.PORT
 
 const app = Fastify({
     logger: true,
@@ -45,6 +49,14 @@ app.register(fastifySwagger,{
 app.register(fastifySwaggerUI,{
     prefix: '/docs'
 })
+app.register(cookie, {
+    secret: "my-secret", // for cookies signature
+    
+    parseOptions: {
+        path: "/",
+        maxAge: 60 * 60 * 24 * 30 // 30 days
+    }     // options for parsing cookies
+  } as FastifyCookieOptions)
 
 app.register(createEvent);
 app.register(registerForEvent);
@@ -53,6 +65,8 @@ app.register(getEvent);
 app.register(getAttendeeBadge);
 app.register(attendeesCheckIn)
 app.register(deleteAttendee)
+app.register(authGoogle) 
+app.register(authGoogleUrl)
  app.register(cors, { 
     origin: "*"
   })
